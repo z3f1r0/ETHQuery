@@ -84,7 +84,7 @@ form.addEventListener('submit', function (e) {
         } // end of for cycle
 
         /// Section to change Value dinamically
-        /// Pgination section code is redundant but it works
+        /// Pagination section code is redundant but it works
         document.getElementById("min_value").addEventListener("change", changeVal); // Event on change selection
 
         function changeVal() {
