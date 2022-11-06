@@ -1,0 +1,109 @@
+/* Stylesheet */
+h2 {
+    color: darkblue; 
+    font-weight: bold;
+    font-family: "Calibri New", monospace;
+    font-size: xx-large;
+    text-align: center;
+}
+h4 { 
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+    font-size: x-large;
+    text-align: center;
+}
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: large;
+    text-align: center;
+}
+input[type=checkbox] {
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px;
+}
+input[type=text] {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+} 
+label {
+    display: block;
+}
+fieldset {
+  background-color: rgb(240, 248, 250);
+  border: 2px solid rgb(67, 131, 200);
+  display: inline-block;
+  margin-left: 2px;
+  margin-right: 2px;
+  text-align: center;
+}
+legend {
+    background-color: rgb(240, 248, 250);
+    color: darkblue;
+    padding: 5px 10px;
+    font-size: x-large;
+    font-weight: bold;
+}
+/*
+#title{
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: center;
+    background-color: rgb(240, 248, 255);
+    background-image: url('eth.png');
+    background-size: 100%;
+    background-position: center;
+    background-position-x: center;
+    background-position-y: center;
+    color: whitesmoke;
+    padding: 5px 10px;
+}*/
+
+/* Table style */
+.txTable {
+    padding: 0;
+    margin: auto;
+    border-collapse: collapse;
+    width: 90%;
+    text-align: center;
+    color: whitesmoke;
+}
+.txTableHeaderRow {
+    color: darkblue;
+    font-weight: bold;
+    height: 50px;
+}
+.txTableBodyRow:nth-child(odd) {
+    background-color: rgba(128, 128, 128, 0.050);
+}
+.txTableBodyRow:hover {
+    background-color: lightblue;
+}
+.txTable tr td {
+    height: 50px;
+    color:black;
+}
+
+/* Pagination style */
+.pager-nav {
+    margin: 16px 0;
+    text-align: center;
+}
+.pager-nav span {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 1px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+.pager-nav span:hover,
+.pager-nav .pg-selected {
+    background-color: #f9f9f9;
+    border: 1px solid #CCCCCC;
+}
