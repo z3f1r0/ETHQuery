@@ -46,20 +46,6 @@ legend {
     font-size: x-large;
     font-weight: bold;
 }
-/*
-#title{
-    font-weight: bold;
-    font-size: xx-large;
-    text-align: center;
-    background-color: rgb(240, 248, 255);
-    background-image: url('eth.png');
-    background-size: 100%;
-    background-position: center;
-    background-position-x: center;
-    background-position-y: center;
-    color: whitesmoke;
-    padding: 5px 10px;
-}*/
 
 /* Table style */
 .txTable {
