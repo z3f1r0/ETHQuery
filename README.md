@@ -4,7 +4,7 @@ A simple client-side web application that performs queries upon Ethereum blockch
 ### Usage
 Download the files and open index.html with your browser.
 
-![alt text](http:/https://github.com/z3f1r0/ETHQuery/ETHQuery.png)
+![alt text](https://github.com/z3f1r0/ETHQuery/blob/ETHQuery.png/image.jpg?raw=true)
 
 ### Info
 I used a free API. You can build your own free web application signing up on https://alchemy.com.
