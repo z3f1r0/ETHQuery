@@ -87,10 +87,10 @@ form.addEventListener('submit', function (e) {
         /// Pagination section code is redundant but it works
         document.getElementById("min_value").addEventListener("change", changeVal); // Event on change selection
 
-        function changeVal() {
+        async function changeVal() {
           let v = document.getElementById("min_value").value;
           //console.log(v) // just to debug
-          clear("idTable") // Clears table body
+          clear("tx") // Clears table body
           createTable(); // createTable() function call
           // Re-processing data
             for (var i=0; i<obj.result.transfers.length; i++){ 
@@ -127,8 +127,12 @@ form.addEventListener('submit', function (e) {
             clear("pageNavPosition") // clear pageNavPosition div
         }
 
-    }); // end of promise   
-
+    }) // end of promise
+    .catch(error => {
+        error.message; // 'An error has occurred'
+        alert(error.message)
+      });
+    
 }) //end of add.EventListener
 
 form.addEventListener('reset', function() { //  Reset and clear all
