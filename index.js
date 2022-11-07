@@ -46,7 +46,7 @@ form.addEventListener('submit', function (e) {
                         'toBlock': 'latest',
                         'fromAddress': wallet,
                         'category': [
-                            'external', 'erc20'
+                            'external', 'internal', 'erc20', 'erc721', 'erc1155', 'specialnft'
                         ],
                         'withMetadata': false,
                         'excludeZeroValue': true,
@@ -55,9 +55,14 @@ form.addEventListener('submit', function (e) {
                 ]      
             })     
         });
+
+        if (!response.ok) {
+            const message = `An error has occured: ${response.status}`;
+            throw new Error(message);
+          };
         
         // Extracting JSON object from fetch response
-        // the .json() method returns a promise, so I have to wait for the JSON: await response.json()
+        // the requestData() method returns a promise, so I have to wait for the JSON: await response.json()
         const resJSON = await response.json();
         return resJSON;
     }
@@ -74,13 +79,16 @@ form.addEventListener('submit', function (e) {
 
         createTable(); // createTable() function call 
         
+        if(obj.result.transfers.length==0){
+            alert("The aren't any transactions from this wallet!")
+        }
+
         // Processing data
         for (var i=0; i<obj.result.transfers.length; i++){ // length = 1000
             if(obj.result['transfers'][i].value > min){ // Filter result for Value
                 appendTx(obj.result['transfers'][i]); // Appends every row to the table
             }
             //console.log(obj.result['transfers'][i]) // just to debug
-                
         } // end of for cycle
 
         /// Section to change Value dinamically
@@ -131,14 +139,9 @@ form.addEventListener('submit', function (e) {
     .catch(error => {
         error.message; // 'An error has occurred'
         alert(error.message)
-      });
-    
-}) //end of add.EventListener
+      });    
 
-form.addEventListener('reset', function() { //  Reset and clear all
-    clear("idTable")
-    clear("pageNavPosition")
-})
+}) //end of add.EventListener
 
 // Clear div/ID element function
 const clear = (elementID) => {
@@ -182,7 +185,8 @@ const createTable = () => {
 } // end of createTable() function
 
 // The function below will append a single transaction
-const appendTx = (singleTx) => { // singleTx represents a single Tx from blockchain and corresponds to the Tx Array received from resJSON
+// singleTx represents a single Tx from blockchain and corresponds to the Tx Array received from resJSON
+const appendTx = (singleTx) => { 
     const txTable = document.querySelector('.txTable') // Finds the table I created
 
     let txTableBodyRow = document.createElement('tr') // Creates current table row
@@ -312,8 +316,3 @@ function Pager(tableName, itemsPerPage) {
     }; // End of showPageNav()
 
 } // End of Pager Constructor
-
-
-
-
-
