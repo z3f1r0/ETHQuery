@@ -18,13 +18,14 @@ form.addEventListener('submit', function (e) {
     }
 
     // Get value of number of transaction we want to visualiza
-    var transactions = document.getElementsByName('num_Tx');
-    var num_tx = "";
+    let transactions = document.getElementsByName('num_Tx');
+    let num_tx = "";
     for(var i = 0; i < transactions.length; i++) {
         if(transactions[i].checked) {
             num_tx = transactions[i].value
         }
     }
+    //console.log("tx per page: "+parseInt(num_tx)) // debug
 
     var min = new FormData(form).get('min_value') // Get minimum Value to visualize
     
@@ -82,14 +83,19 @@ form.addEventListener('submit', function (e) {
         if(obj.result.transfers.length==0){
             alert("The aren't any transactions from this wallet!")
         }
-
+        
         // Processing data
+        let c=0 // counter effective output tx
         for (var i=0; i<obj.result.transfers.length; i++){ // length = 1000
             if(obj.result['transfers'][i].value > min){ // Filter result for Value
                 appendTx(obj.result['transfers'][i]); // Appends every row to the table
+                c++;
             }
-            //console.log(obj.result['transfers'][i]) // just to debug
+            //console.log(obj.result['transfers'][i]) // debug
         } // end of for cycle
+        
+        //console.log("min value: "+parseInt(min)) // debug
+        //console.log("tx in output: "+parseInt(c)) // debug
 
         /// Section to change Value dinamically
         /// Pagination section code is redundant but it works
@@ -97,26 +103,30 @@ form.addEventListener('submit', function (e) {
 
         async function changeVal() {
           let v = document.getElementById("min_value").value;
-          //console.log(v) // just to debug
+          //console.log("new min val: "+v) // debug
           clear("tx") // Clears table body
           createTable(); // createTable() function call
           // Re-processing data
+            let k=0; //counter
             for (var i=0; i<obj.result.transfers.length; i++){ 
                 if(obj.result['transfers'][i].value > v){ // Filter result for Value
                     appendTx(obj.result['transfers'][i]); // Appends every row to the table
+                    k++;
                 }
             } // end of for cycle
+
+            //console.log("new tx in output: "+parseInt(k)) // debug
 
             // Pagination section
             pager = new Pager('idTable', parseInt(num_tx)); // Creates Pager Objecy
 
-            if(obj.result.transfers.length > parseInt(num_tx)){
+            if(parseInt(k) > parseInt(num_tx)){
                 pager.init();
                 pager.showPageNav('pager', 'pageNavPosition');
                 pager.showPage(1)
             }
 
-            if(num_tx == "" || num_tx > obj.result.transfers.length){
+            if(num_tx == "" || num_tx > parseInt(k)){
                 clear("pageNavPosition") // clear pageNavPosition div
             }
             
@@ -125,20 +135,21 @@ form.addEventListener('submit', function (e) {
         // Pagination section
         pager = new Pager('idTable', parseInt(num_tx)); // Creates Pager Object
 
-        if(obj.result.transfers.length > parseInt(num_tx)){
+        if(parseInt(c) > parseInt(num_tx)){
             pager.init();
             pager.showPageNav('pager', 'pageNavPosition');
             pager.showPage(1)
         }
 
-        if(num_tx == "" || num_tx > obj.result.transfers.length){
+        if(num_tx == "" || num_tx > parseInt(c)){
             clear("pageNavPosition") // clear pageNavPosition div
         }
 
     }) // end of promise
     .catch(error => {
         error.message; // 'An error has occurred'
-        alert(error.message)
+        console.log(error.message)
+        alert(error.message+".\n\n Try again!")
       });    
 
 }) //end of add.EventListener
@@ -295,6 +306,7 @@ function Pager(tableName, itemsPerPage) {
         let records = (rows.length - 1);
         this.pages = Math.ceil(records / itemsPerPage);
         this.inited = true;
+        //console.log("num pages: " +this.pages) // debug
     };
 
     this.showPageNav = (pagerName, positionId) => {
