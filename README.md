@@ -1,5 +1,5 @@
 # ETHQuery
-A simple client-side web application that performs queries upon Ethereum blockchain to receive transactions information of a wallet address.
+A simple client-side web application that performs queries upon Ethereum blockchain to receive transactions information about a wallet address.
 
 ### Usage
 Download the files and open index.html with your browser.
