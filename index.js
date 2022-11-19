@@ -18,14 +18,8 @@ form.addEventListener('submit', function (e) {
     }
 
     // Get value of number of transaction we want to visualiza
-    let transactions = document.getElementsByName('num_Tx');
-    let num_tx = "";
-    for(var i = 0; i < transactions.length; i++) {
-        if(transactions[i].checked) {
-            num_tx = transactions[i].value
-        }
-    }
-    //console.log("tx per page: "+parseInt(num_tx)) // debug
+    let num_tx = document.querySelector('input[name="num_Tx"]:checked').value;
+    //console.log("tx per page: "+parseInt(num_tx)) //debug
 
     var min = new FormData(form).get('min_value') // Get minimum Value to visualize
     
