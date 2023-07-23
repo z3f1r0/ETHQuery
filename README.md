@@ -8,3 +8,5 @@ Download the files and open index.html with your browser.
 
 ### Info
 I used a free API. You can build your own free web application signing up on https://alchemy.com.
+
+Try it here: [https://z3f1r0.github.io/pages/ethquery.html](https://z3f1r0.github.io/pages/ethquery.html).
