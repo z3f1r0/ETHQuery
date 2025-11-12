@@ -76,7 +76,10 @@ form.addEventListener('submit', function (e) {
 
         // Structure of resJSON -> '{"result": {"transfers": {"ARRAY(NUM)": "blockNum":value, "hash": value, "from": value, "to": value, "value": value, "asset": value}}}
 
-        var obj = JSON.parse(JSON.stringify(resJSON)); // Parsing JSON objects  
+        var obj = JSON.parse(JSON.stringify(resJSON)); // Parsing JSON objects
+
+        // Invert transfers to show newest first
+        obj.result.transfers.reverse();
 
         createTable(); // createTable() function call 
         
@@ -328,3 +331,4 @@ function Pager(tableName, itemsPerPage) {
     }; // End of showPageNav()
 
 } // End of Pager Constructor
+
